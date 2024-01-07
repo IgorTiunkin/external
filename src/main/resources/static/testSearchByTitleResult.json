@@ -1,0 +1,48 @@
+{
+  "page": 1 ,
+  "next": null ,
+  "entries": 1 ,
+  "results": [
+    {
+      "_id": "61e5a73db597b91eb94a8777" ,
+      "id": "tt1480925" ,
+      "primaryImage": {
+        "id": "rm2161140992" ,
+        "width": 640 ,
+        "height": 960 ,
+        "url": "https://m.media-amazon.com/images/M/MV5BYTNlMWFmYjQtM2E2ZC00ZDEwLWI1NjktY2MxMmJkYzNkMzkzXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_.jpg" ,
+        "caption": {
+          "plainText": "Bakemonogatari (2009)" ,
+          "__typename": "Markdown"
+        } ,
+        "__typename": "Image"
+      } ,
+      "titleType": {
+        "text": "TV Series" ,
+        "id": "tvSeries" ,
+        "isSeries": true ,
+        "isEpisode": false ,
+        "__typename": "TitleType"
+      } ,
+      "titleText": {
+        "text": "Bakemonogatari" ,
+        "__typename": "TitleText"
+      } ,
+      "originalTitleText": {
+        "text": "Bakemonogatari" ,
+        "__typename": "TitleText"
+      } ,
+      "releaseYear": {
+        "year": 2009 ,
+        "endYear": 2010 ,
+        "__typename": "YearRange"
+      } ,
+      "releaseDate": {
+        "day": 3 ,
+        "month": 7 ,
+        "year": 2009 ,
+        "__typename": "ReleaseDate"
+      }
+    }
+  ]
+}

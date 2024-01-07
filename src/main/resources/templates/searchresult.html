@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search result</title>
+</head>
+<body>
+<div style="width: 50%;  margin: 0 auto;">
+    <div th:each="result : ${results}">
+        <h3 th:text="${result.getTitleText().getText()}"></h3>
+        <img th:src="${result.getPrimaryImage().getUrl()}"
+        th:width="200">
+        <p th:text="'Start year - ' + ${result.getReleaseYear().getYear()}"></p>
+        <p th:text="'End year - ' + ${result.getReleaseYear().getEndYear()}"></p>
+        <p th:text="'Release date: Year: ' + ${result.getReleaseDate().getYear()} +
+        ' Month: ' + ${result.getReleaseDate().getMonth()} + ' Day: ' + ${result.getReleaseDate().getDay()}" ></p>
+    </div>
+</div>
+</body>
+</html>

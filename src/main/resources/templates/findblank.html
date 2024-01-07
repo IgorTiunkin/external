@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+<div style="width: 50%;  margin: 0 auto;">
+    <h2>Search title of movie</h2>
+    <form th:action="@{/movies/findResult}" th:method="POST" th:object="${blank}">
+        <label for="searchWord" th:text="'Type title for search'"></label>
+        <input type="text" id="searchWord" th:field = "*{searchWord}">
+        <br>
+        <input type="submit" th:value="search">
+    </form>
+</div>
+</body>
+</html>
