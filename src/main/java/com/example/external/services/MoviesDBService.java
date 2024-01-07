@@ -2,6 +2,7 @@ package com.example.external.services;
 
 import com.example.external.DTO.SearchBlankDTO;
 import com.example.external.DTO.SearchByIdResultDTO;
+import com.example.external.DTO.searchbyseries.SearchBySeriesResultDTO;
 import com.example.external.DTO.searchbytitle.SearchByTitleResultDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,4 +43,14 @@ public class MoviesDBService {
                 .block();
     }
 
+    public SearchBySeriesResultDTO findSeriesById(String id) {
+        return builder.build()
+                .get()
+                .uri("https://moviesdatabase.p.rapidapi.com/titles/series/"+id)
+                .header("X-RapidAPI-Key", apiKey)
+                .header("X-RapidAPI-Host", "moviesdatabase.p.rapidapi.com")
+                .retrieve()
+                .bodyToMono(SearchBySeriesResultDTO.class)
+                .block();
+    }
 }

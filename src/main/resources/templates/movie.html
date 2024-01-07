@@ -19,7 +19,10 @@
         <p th:text="'Release date: Year: ' + ${result.getReleaseDate().getYear()} +
         ' Month: ' + ${result.getReleaseDate().getMonth()} + ' Day: ' + ${result.getReleaseDate().getDay()}" ></p>
         </div>
-        <hr>
+        <div th:if="${result.getTitleType().getIsSeries()}">
+            <a th:href="@{/movies/series/{id}(id=${result.getId()})}"
+            th:text="Episodes"></a>
+        </div>
     </div>
 </div>
 </body>

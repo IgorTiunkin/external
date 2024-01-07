@@ -2,6 +2,7 @@ package com.example.external.controllers;
 
 import com.example.external.DTO.SearchBlankDTO;
 import com.example.external.DTO.SearchByIdResultDTO;
+import com.example.external.DTO.searchbyseries.SearchBySeriesResultDTO;
 import com.example.external.DTO.searchbytitle.SearchByTitleResultDTO;
 import com.example.external.services.MoviesDBService;
 import lombok.RequiredArgsConstructor;
@@ -42,5 +43,13 @@ public class MovieDBController {
         model.addAttribute("result", movieById.getResults());
         return "/movie";
     }
+
+    @GetMapping("/series/{id}")
+    public String series(@PathVariable("id") String id, Model model) {
+        SearchBySeriesResultDTO seriesById = moviesDBService.findSeriesById(id);
+        model.addAttribute("series", seriesById.getResults());
+        return "/series";
+    }
+
 
 }

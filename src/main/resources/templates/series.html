@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Series</title>
+</head>
+<body>
+<div style="width: 50%;  margin: 0 auto;">
+    <a th:href="@{/movies/find}" th:text="'Return to search'"></a>
+        <div th:each="serie : ${series}">
+            <a th:href="@{/movies/movie/{id}(id=${serie.getTconst()})}"
+               th:text="'Season number: ' + ${serie.getSeasonNumber()} + ' Episode number: ' + ${serie.getEpisodeNumber()}"></a>
+        </div>
+</div>
+</body>
+</html>

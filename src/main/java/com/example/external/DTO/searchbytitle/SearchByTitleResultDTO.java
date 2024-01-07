@@ -18,4 +18,6 @@ public class SearchByTitleResultDTO {
 
     private SearchByTitleResultMovieDTO [] results;
 
+
+
 }

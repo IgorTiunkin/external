@@ -8,7 +8,8 @@
 <div style="width: 50%;  margin: 0 auto;">
     <a th:href="@{/movies/find}" th:text="'Return to search'"></a>
     <div th:each="result : ${results}">
-        <h3 th:text="${result.getTitleText().getText()}"></h3>
+        <a style="font-size: 20px" th:text="${result.getTitleText().getText()}" th:href="@{/movies/movie/{id}(id=${result.getId()})}"></a>
+        <br>
         <img th:if="${result.getPrimaryImage()!=null}" th:src="${result.getPrimaryImage().getUrl()}"
         th:width="200">
         <div th:if="${result.getReleaseYear()!=null}">

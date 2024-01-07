@@ -20,4 +20,6 @@ public class SearchByTitleResultMovieDTO {
 
     private SearchByTitleResultReleaseDateDTO releaseDate;
 
+    private SearchByTitleResultTitleTypeDTO titleType;
+
 }
