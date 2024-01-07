@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.concurrent.ExecutionException;
+
 @Controller
 @RequestMapping("/movies")
 @RequiredArgsConstructor
@@ -27,10 +29,10 @@ public class MovieDBController {
 
     @GetMapping("/findResult")
     public String findByName(@ModelAttribute("blank") SearchBlankDTO searchBlankDTO, Model model,
-                             @ModelAttribute(value = "currentPage") String page) {
+                             @ModelAttribute(value = "currentPage") String page) throws ExecutionException, InterruptedException {
         if(page==null || page.isEmpty()) page="0";
         searchBlankDTO.setPage(Integer.parseInt(page)+1);
-        SearchByTitleResultDTO searchByTitleResultDTO = moviesDBService.findByTitle(searchBlankDTO);
+        SearchByTitleResultDTO searchByTitleResultDTO = moviesDBService.findByTitle(searchBlankDTO).get();
         model.addAttribute("results", searchByTitleResultDTO.getResults());
         model.addAttribute("currentPage", searchByTitleResultDTO.getPage());
         model.addAttribute("next", searchByTitleResultDTO.getNext());
@@ -38,15 +40,15 @@ public class MovieDBController {
     }
 
     @GetMapping("/movie/{id}")
-    public String movie(@PathVariable ("id") String id, Model model) {
-        SearchByIdResultDTO movieById = moviesDBService.findMovieById(id);
+    public String movie(@PathVariable ("id") String id, Model model) throws ExecutionException, InterruptedException {
+        SearchByIdResultDTO movieById = moviesDBService.findMovieById(id).get();
         model.addAttribute("result", movieById.getResults());
         return "/movie";
     }
 
     @GetMapping("/series/{id}")
-    public String series(@PathVariable("id") String id, Model model) {
-        SearchBySeriesResultDTO seriesById = moviesDBService.findSeriesById(id);
+    public String series(@PathVariable("id") String id, Model model) throws ExecutionException, InterruptedException {
+        SearchBySeriesResultDTO seriesById = moviesDBService.findSeriesById(id).get();
         model.addAttribute("series", seriesById.getResults());
         return "/series";
     }
