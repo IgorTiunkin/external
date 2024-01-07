@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/movies")
 @RequiredArgsConstructor
+@SessionAttributes({"blank", "currentPage"})
 public class MovieDBController {
 
     private final MoviesDBService moviesDBService;
@@ -18,14 +19,19 @@ public class MovieDBController {
     @GetMapping("/find")
     public String findByNameBlank(Model model) {
         model.addAttribute("blank", new SearchBlankDTO());
+        model.addAttribute("currentPage", 0);
         return "/findblank";
     }
 
-    @PostMapping("/findResult")
-    public String findByName(@ModelAttribute SearchBlankDTO searchBlankDTO, Model model) {
-        String searchWord = searchBlankDTO.getSearchWord();
-        SearchByTitleResultDTO searchByTitleResultDTO = moviesDBService.findByTitle(searchWord);
+    @GetMapping("/findResult")
+    public String findByName(@ModelAttribute("blank") SearchBlankDTO searchBlankDTO, Model model,
+                             @ModelAttribute(value = "currentPage") String page) {
+        if(page==null || page.isEmpty()) page="0";
+        searchBlankDTO.setPage(Integer.parseInt(page)+1);
+        SearchByTitleResultDTO searchByTitleResultDTO = moviesDBService.findByTitle(searchBlankDTO);
         model.addAttribute("results", searchByTitleResultDTO.getResults());
+        model.addAttribute("currentPage", searchByTitleResultDTO.getPage());
+        model.addAttribute("next", searchByTitleResultDTO.getNext());
         return "/searchresult";
     }
 

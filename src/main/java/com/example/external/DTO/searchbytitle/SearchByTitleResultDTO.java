@@ -10,6 +10,10 @@ import lombok.*;
 @ToString
 public class SearchByTitleResultDTO {
 
+    private String page;
+
+    private String next;
+
     private Integer entries;
 
     private SearchByTitleResultMovieDTO [] results;

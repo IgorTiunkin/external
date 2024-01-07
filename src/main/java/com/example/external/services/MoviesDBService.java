@@ -1,5 +1,6 @@
 package com.example.external.services;
 
+import com.example.external.DTO.SearchBlankDTO;
 import com.example.external.DTO.searchbytitle.SearchByTitleResultDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,10 +16,13 @@ public class MoviesDBService {
     @Value("${apiKey}")
     private String apiKey;
 
-    public SearchByTitleResultDTO findByTitle(String searchWord) {
+    public SearchByTitleResultDTO findByTitle(SearchBlankDTO searchBlankDTO) {
+        String searchWord = searchBlankDTO.getSearchWord();
+        Integer page = searchBlankDTO.getPage();
         return builder.build()
                 .get()
-                .uri("https://moviesdatabase.p.rapidapi.com/titles/search/akas/" + searchWord)
+                .uri("https://moviesdatabase.p.rapidapi.com/titles/search/title/" + searchWord,
+                        uriBuilder -> uriBuilder.queryParam("page", page).build())
                 .header("X-RapidAPI-Key", apiKey)
                 .header("X-RapidAPI-Host", "moviesdatabase.p.rapidapi.com")
                 .retrieve()

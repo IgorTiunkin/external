@@ -11,4 +11,6 @@ public class SearchBlankDTO {
 
     private String searchWord;
 
+    private Integer page;
+
 }
