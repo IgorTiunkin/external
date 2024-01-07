@@ -2,12 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Search result</title>
+    <title>Movie</title>
 </head>
 <body>
 <div style="width: 50%;  margin: 0 auto;">
     <a th:href="@{/movies/find}" th:text="'Return to search'"></a>
-    <div th:each="result : ${results}">
+    <div >
         <h3 th:text="${result.getTitleText().getText()}"></h3>
         <img th:if="${result.getPrimaryImage()!=null}" th:src="${result.getPrimaryImage().getUrl()}"
         th:width="200">
@@ -20,9 +20,6 @@
         ' Month: ' + ${result.getReleaseDate().getMonth()} + ' Day: ' + ${result.getReleaseDate().getDay()}" ></p>
         </div>
         <hr>
-    </div>
-    <div th:if="${next}!=null">
-        <a th:href="@{/movies/findResult}" th:text="next"></a>
     </div>
 </div>
 </body>
